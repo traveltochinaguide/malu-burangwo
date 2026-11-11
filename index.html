@@ -39,7 +39,7 @@
         <div class="veil" id="start-screen"><div class="start-card"><div class="eyebrow">今日任务：保住全勤</div><h1>马路不让<br><span>我上班。</span></h1><p class="start-copy">你只是想准时打个卡，<br>这条马路却有自己的想法。</p><div class="departure"><div>出发时间<b>8:00</b></div><span class="arrow">→</span><div>打卡时间<b>9:00</b></div></div><button class="primary" id="start">开始游戏 →</button><p class="start-hint">一局 60 秒 = 60 分钟通勤<br>换道 / 刹车会减速 · 看 ETA 赶路<br>巡航 60 准时到 · 松开后自动提速追赶<br>键盘 ← → / A D 换道，↓ / 空格刹车<br>手机按键或左右滑动换道</p><div class="load-state" id="load-state">二维替身渲染中 · 可以直接开始</div></div></div>
         <div class="veil result-veil off" id="result-screen"><div class="result-wrap"><article class="result-card" id="result-card"><div class="result-top"><span>不迟到算你赢</span><span id="card-date"></span></div><h2 id="result-title">今日迟到原因</h2><div class="result-arrival"><div><small>今日到达时间</small><div class="arrival-number" id="arrival">9:00</div></div><div class="late-stamp" id="late-stamp">准时打卡</div></div><p class="excuse" id="excuse"></p><div class="result-metrics"><div><b id="result-late">0</b><small id="result-late-label">迟到分钟</small></div><div><b id="result-score">0</b><small>本局得分</small></div><div><b id="result-streak">0</b><small>累计准时天数</small></div></div><p class="late-days">累计准时 <b id="result-on-time-days">0</b> 天 · 累计迟到 <b id="result-late-days">0</b> 天</p><p class="encounter-heading" id="encounter-heading">今日遭遇</p><ul class="encounter-list" id="encounters"></ul><p class="card-safe">现实中请减速礼让</p></article><div class="result-actions"><button class="again" id="again">再玩一局 →</button><button class="share" id="share">邀好友一起准时</button><div class="result-share-row"><button class="save" id="save">保存图片</button><button id="copy">复制迟到原因</button></div><div class="action-feedback" id="action-feedback" role="status"></div></div></div></div>
       </section>
-      <aside class="sidebar" id="observatory"><button class="observatory-toggle" id="observatory-toggle" type="button" aria-controls="observatory-content" aria-expanded="true">早高峰观察室 · 第 001 期</button><div class="sidebar-content" id="observatory-content"><div class="issue"><span>早高峰观察室</span><span>第 001 期</span></div><h2>离全勤奖，<br>只差一条<span>马路。</span></h2><p class="editorial">8:00 出发，9:00 打卡。<br>60 秒走完 60 分钟通勤。<br>至于几点到？<br>得看路上的各位答不答应。</p><div class="stat-strip"><div class="stamp">勤</div><div><b>今天也在努力准时</b><small>每天来一局，攒你的全勤连胜</small></div></div><div class="obstacle-title">早高峰离谱图鉴 <span>今日共 7 类</span></div><ul class="obstacle-list" id="obstacle-list"><li data-kind="ghost"><span class="badge">👴</span>公交车前鬼探头<b>+0.5 分钟</b></li><li data-kind="pedestrian,bike"><span class="badge">🚶</span>横穿行人 / 电动车<b>+0.5 / +0.75</b></li><li data-kind="wrong"><span class="badge">↙</span>逆行电动车<b>+0.75 分钟</b></li><li data-kind="courier"><span class="badge">🛵</span>外卖蛇形走位<b>+1 分钟</b></li><li data-kind="snake"><span class="badge">〰</span>蛇形电动车<b>+0.75 分钟</b></li><li data-kind="door"><span class="badge">🚪</span>前车突然开门<b>+0.25 分钟</b></li><li data-kind="turtle"><span class="badge">🐢</span>龟速车<b>减速 · 不额外罚时</b></li></ul><div class="safety"><strong>全勤要争，行人要让。</strong>换道、刹车与龟速跟车都会推迟 ETA。<br>松开后自动提速追回时间，最高 78。<br>现实中请减速礼让。</div></div></aside>
+      <aside class="sidebar" id="observatory"><button class="observatory-toggle" id="observatory-toggle" type="button" aria-controls="observatory-content" aria-expanded="true">早高峰观察室 · 第 001 期</button><div class="sidebar-content" id="observatory-content"><div class="issue"><span>早高峰观察室</span><span>第 001 期</span></div><h2>离全勤奖，<br>只差一条<span>马路。</span></h2><p class="editorial">8:00 出发，9:00 打卡。<br>60 秒走完 60 分钟通勤。<br>至于几点到？<br>得看路上的各位答不答应。</p><div class="stat-strip"><div class="stamp">勤</div><div><b>今天也在努力准时</b><small>每天来一局，攒你的全勤连胜</small></div></div><div class="obstacle-title">早高峰离谱图鉴 <span>今日共 7 类</span></div><ul class="obstacle-list" id="obstacle-list"><li data-kind="ghost"><span class="badge">👴</span>公交车前鬼探头<b>+1 分钟</b></li><li data-kind="pedestrian,bike"><span class="badge">🚶</span>横穿行人 / 电动车<b>+1 / +1</b></li><li data-kind="wrong"><span class="badge">↙</span>逆行电动车<b>+1 分钟</b></li><li data-kind="courier"><span class="badge">🛵</span>外卖蛇形走位<b>+1 分钟</b></li><li data-kind="snake"><span class="badge">〰</span>蛇形电动车<b>+1 分钟</b></li><li data-kind="door"><span class="badge">🚪</span>前车突然开门<b>+1 分钟</b></li><li data-kind="turtle"><span class="badge">🐢</span>龟速车<b>减速 · 不额外罚时</b></li></ul><div class="safety"><strong>全勤要争，行人要让。</strong>换道、刹车与龟速跟车都会推迟 ETA。<br>松开后自动提速追回时间，最高 78。<br>现实中请减速礼让。</div></div></aside>
     </main>
     <footer class="footer"><span>把迟到原因复制给老板，把全勤留给明天。</span><span>无登录 · 无广告 · 纯静态</span></footer>
   </div>
@@ -54,14 +54,14 @@
     const ONTIME_TEXT='9:00 准时打卡！今天马路居然放过你了，全勤保住了。';
     const ONTIME_SHARE='今天 9:00 准时到公司！不迟到算我赢，搜：不迟到算你赢 https://malu.aiarts.cc/';
     const TYPES={
-      ghost:{name:'鬼探头大爷',fee:.5,color:'#bca0dc',reason:'鬼探头大爷从公交车头闪现。人到公司了，魂还在公交站。'},
-      pedestrian:{name:'横穿行人',fee:.5,color:'#6f9c85',reason:'行人横穿马路不看灯。我刹车了，他慢慢走了。'},
-      bike:{name:'横穿电动车',fee:.75,color:'#e78a55',reason:'电动车横穿马路。我让了，他赢了。'},
-      wrong:{name:'逆行电动车',fee:.75,color:'#cf695b',reason:'被逆行电动车逼停。我让了，他赢了，全勤没了。'},
+      ghost:{name:'鬼探头大爷',fee:1,color:'#bca0dc',reason:'鬼探头大爷从公交车头闪现。人到公司了，魂还在公交站。'},
+      pedestrian:{name:'横穿行人',fee:1,color:'#6f9c85',reason:'行人横穿马路不看灯。我刹车了，他慢慢走了。'},
+      bike:{name:'横穿电动车',fee:1,color:'#e78a55',reason:'电动车横穿马路。我让了，他赢了。'},
+      wrong:{name:'逆行电动车',fee:1,color:'#cf695b',reason:'被逆行电动车逼停。我让了，他赢了，全勤没了。'},
       courier:{name:'外卖小哥',fee:1,color:'#f9c843',reason:'外卖小哥蛇形走位截停我。他在配送，我在罚站。'},
-      door:{name:'开门杀',fee:.25,color:'#88aaa7',reason:'前车突然开门杀。车门打开了，全勤关闭了。'},
+      door:{name:'开门杀',fee:1,color:'#88aaa7',reason:'前车突然开门杀。车门打开了，全勤关闭了。'},
       turtle:{name:'龟速车',fee:0,color:'#a4af6a',reason:'前面龟速车时速15。我超不过去，全勤先走了。'},
-      snake:{name:'蛇形电动车',fee:.75,color:'#e78a55',reason:'电动车蛇形闯入机动车道。我让了，他赢了。'}
+      snake:{name:'蛇形电动车',fee:1,color:'#e78a55',reason:'电动车蛇形闯入机动车道。我让了，他赢了。'}
     };
     const ASSETS={elder:'organillero-67b687',pedestrian:'parent-chaperone-79e535',courier:'delivery-courier-327e30',moped:'delivery-moped-1aa2ce',bicycle:'city-bicycle-5b67d1',car:'town-car-56eeb6',player:'compact-hatchback-386417',bus:'city-bus-49fd97',minivan:'family-minivan-924de0',roofTurtle:'sea-turtle-base'};
     // 2026-11-10 实际读取八份 -params.json；以下键与选择值全部来自对应 schema。
@@ -191,7 +191,7 @@
       for(const kind of state.result.first){const li=document.createElement('li'),a=document.createElement('span'),b=document.createElement('b');a.textContent=TYPES[kind].name;b.textContent=`${state.result.counts[kind]} 次`;li.append(a,b);list.append(li);}
       $('restart').classList.add('off');$('rewards').replaceChildren();$('result-screen').classList.remove('off');$('toast').classList.remove('show');$('arena').classList.remove('braking');updateHUD();
     }
-    function steer(dir){if(state.phase!=='playing'||state.preparing>0||pause)return;const lane=clamp(state.lane+dir,0,2);if(lane===state.lane)return;state.lane=lane;state.laneSlow=.45;state.speed=Math.min(state.speed,BASE_SPEED*.78);notify('换道 · 短暂减速','提速 · 追回时间',1);updateHUD();}
+    function steer(dir){if(state.phase!=='playing'||state.preparing>0||pause)return;const lane=clamp(state.lane+dir,0,2);if(lane===state.lane)return;state.lane=lane;state.laneSlow=.18;state.speed*=.94;notify('换道 · 短暂减速','提速 · 追回时间',1);updateHUD();}
     function updateHUD(){
       const estimate=commuteEstimate();state.late=lateMinutes(estimate.arrivalMinutes);
       $('remaining').textContent=Math.max(0,DURATION-state.elapsed).toFixed(1);$('score').textContent=Math.floor(state.score);$('late').textContent=state.late;
@@ -219,12 +219,9 @@
       // 白框时从 HUD 50 匀加速到 60；只积分场景滚动，不计通勤距离与 ETA。
       if(state.preparing>0){const waiting=Math.min(dt,state.preparing),beforeSpeed=state.speed;state.preparing=Math.max(0,state.preparing-waiting);dt-=waiting;state.speed=PREPARING_SPEED+(BASE_SPEED-PREPARING_SPEED)*(1-state.preparing/PREPARING_SECONDS);state.scroll+=(beforeSpeed+state.speed)*.5*waiting;state.brake=false;keyBrake=pointerBrake=false;if(state.preparing>1e-9)return;state.preparing=0;$('toast').style.transition='none';$('toast').classList.remove('show');void $('toast').offsetWidth;$('toast').style.removeProperty('transition');state.toastUntil=0;if(dt<=1e-9)return;}
       dt=Math.min(dt,DURATION-state.elapsed);state.elapsed+=dt;if(DURATION-state.elapsed<1e-9)state.elapsed=DURATION;state.invincible=Math.max(0,state.invincible-dt);state.brake=keyBrake||pointerBrake;
-      // 只在落后于准时所需平均速度时自动追赶，最高 78 km/h；换道与刹车优先减速。
-      const previousMinutes=(state.elapsed-dt)*COMMUTE_MINUTES/DURATION;
-      const requiredSpeed=ROUTE_KM*60/Math.max(.1,COMMUTE_MINUTES-state.collisionMinutes);
-      const behind=state.distanceKm<previousMinutes*requiredSpeed/60-1e-7;
-      const target=state.brake?BASE_SPEED*.2:state.laneSlow>0?BASE_SPEED*.78:behind?MAX_SPEED:BASE_SPEED;
-      state.speed+=(target-state.speed)*Math.min(1,dt*(state.brake?8:2.3));state.laneSlow=Math.max(0,state.laneSlow-dt);state.x+=(LANES[state.lane]-state.x)*Math.min(1,dt*12);let speed=state.speed;
+      // 直线持续平滑提速至最高 78 km/h；换道后短暂放缓提速，刹车优先减速。
+      const target=state.brake?BASE_SPEED*.2:MAX_SPEED;
+      state.speed+=(target-state.speed)*Math.min(1,dt*(state.brake?8:state.laneSlow>0?.2:.45));state.laneSlow=Math.max(0,state.laneSlow-dt);state.x+=(LANES[state.lane]-state.x)*Math.min(1,dt*12);let speed=state.speed;
       // 龟速车采用安全跟车：夹住相对距离，车辆不会穿过前车；换道即可超车。
       const turtle=state.obstacles.find(o=>o.kind==='turtle'&&Math.abs(o.x-state.x)<1.3&&PLAYER_Z-o.z>0&&PLAYER_Z-o.z<12);if(turtle&&PLAYER_Z-turtle.z<6.5)speed=Math.min(speed,4.3);state.speed=speed;state.distanceKm+=speed*SPEED_SCALE*dt*COMMUTE_MINUTES/DURATION/60;state.scroll+=speed*dt;
       if(state.elapsed>=state.nextRandom&&state.elapsed<DURATION-1){spawnRandomObstacle();state.nextRandom=state.elapsed+randomSpawnInterval();}
