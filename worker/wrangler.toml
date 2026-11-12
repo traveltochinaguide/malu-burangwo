@@ -1,0 +1,10 @@
+name = "malu-board"
+main = "src/index.js"
+compatibility_date = "2026-11-12"
+workers_dev = true
+
+[[d1_databases]]
+binding = "DB"
+database_name = "malu-board-db"
+# 部署前先跑：wrangler d1 create malu-board-db ，把返回的 id 填到下面
+database_id = "968af473-5931-4104-8491-c226b983ba3b"
