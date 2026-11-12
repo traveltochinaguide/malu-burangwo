@@ -207,7 +207,7 @@
       for(const kind of state.result.first){const li=document.createElement('li'),a=document.createElement('span'),b=document.createElement('b');a.textContent=TYPES[kind].name;b.textContent=`${state.result.counts[kind]} 次`;li.append(a,b);list.append(li);}
       $('restart').classList.add('off');$('rewards').replaceChildren();$('result-screen').classList.remove('off');$('toast').classList.remove('show');$('arena').classList.remove('braking');updateHUD();
     }
-    function steer(dir){if(state.phase!=='playing'||state.preparing>0||pause)return;const lane=clamp(state.lane+dir,0,2);if(lane===state.lane)return;state.lane=lane;state.speed*=.97;updateHUD();}
+    function steer(dir){if(state.phase!=='playing'||state.preparing>0||pause)return;const lane=clamp(state.lane+dir,0,2);if(lane===state.lane)return;state.lane=lane;state.speed*=.95;updateHUD();}
     function updateHUD(){
       const estimate=commuteEstimate();state.late=lateMinutes(estimate.arrivalMinutes);
       $('drive-clock').textContent=currentTime();
