@@ -207,7 +207,7 @@
       for(const kind of state.result.first){const li=document.createElement('li'),a=document.createElement('span'),b=document.createElement('b');a.textContent=TYPES[kind].name;b.textContent=`${state.result.counts[kind]} 次`;li.append(a,b);list.append(li);}
       $('restart').classList.add('off');$('rewards').replaceChildren();$('result-screen').classList.remove('off');$('toast').classList.remove('show');$('arena').classList.remove('braking');updateHUD();
     }
-    function steer(dir){if(state.phase!=='playing'||state.preparing>0||pause)return;const lane=clamp(state.lane+dir,0,2);if(lane===state.lane)return;state.lane=lane;updateHUD();}
+    function steer(dir){if(state.phase!=='playing'||state.preparing>0||pause)return;const lane=clamp(state.lane+dir,0,2);if(lane===state.lane)return;state.lane=lane;state.speed*=.97;updateHUD();}
     function updateHUD(){
       const estimate=commuteEstimate();state.late=lateMinutes(estimate.arrivalMinutes);
       $('drive-clock').textContent=currentTime();
@@ -257,7 +257,7 @@
       if(state.speed>=MAX_SPEED)state.reachedMaxSpeed=true;
       const remainingMinutes=Math.max(dt,DURATION-state.elapsed+dt)*COMMUTE_MINUTES/DURATION;
       const target=state.brake?BASE_SPEED*.2:clamp((ROUTE_KM-state.distanceKm)*60/remainingMinutes/SPEED_SCALE,BASE_SPEED,MAX_SPEED);
-      state.speed=state.brake||state.reachedMaxSpeed?state.speed+(target-state.speed)*Math.min(1,dt*(state.brake?8:.4)):Math.min(MAX_SPEED,state.speed+STRAIGHT_ACCEL*dt);if(state.speed>=MAX_SPEED)state.reachedMaxSpeed=true;state.x+=(LANES[state.lane]-state.x)*Math.min(1,dt*12);let speed=state.speed;
+      state.speed=state.brake?state.speed+(target-state.speed)*Math.min(1,dt*8):state.reachedMaxSpeed?state.speed+(MAX_SPEED-state.speed)*Math.min(1,dt*.4):Math.min(MAX_SPEED,state.speed+STRAIGHT_ACCEL*dt);if(state.speed>=MAX_SPEED)state.reachedMaxSpeed=true;state.x+=(LANES[state.lane]-state.x)*Math.min(1,dt*12);let speed=state.speed;
       // 龟速车采用安全跟车：夹住相对距离，车辆不会穿过前车；换道即可超车。
       const turtle=state.obstacles.find(o=>o.kind==='turtle'&&Math.abs(o.x-state.x)<1.3&&PLAYER_Z-o.z>0&&PLAYER_Z-o.z<12);if(turtle&&PLAYER_Z-turtle.z<6.5)speed=Math.min(speed,4.3);state.speed=speed;state.distanceKm+=speed*SPEED_SCALE*dt*COMMUTE_MINUTES/DURATION/60;state.scroll+=speed*dt;
       if(state.elapsed>=state.nextRandom&&state.elapsed<DURATION-1){spawnRandomObstacle();state.nextRandom=state.elapsed+randomSpawnInterval();}
