@@ -1,0 +1,4 @@
+name = "malu-site"
+main = "index.js"
+compatibility_date = "2026-11-12"
+workers_dev = false
