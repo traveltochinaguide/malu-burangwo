@@ -4,6 +4,11 @@
 export default {
   async fetch(req) {
     const url = new URL(req.url);
+    if (url.pathname === '/ads.txt') {
+      return new Response('google.com, pub-2274290381465979, DIRECT, f08c47fec0942fa0\n', {
+        headers: { 'Content-Type': 'text/plain' },
+      });
+    }
     const target = 'https://malu-burangwo-cf1.pages.dev' + url.pathname + url.search;
     const res = await fetch(target, { headers: { 'user-agent': req.headers.get('user-agent') || 'malu-site-proxy' } });
     const headers = new Headers(res.headers);
