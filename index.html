@@ -63,6 +63,7 @@
     .ad-slot{display:block;min-height:60px;margin:12px auto;max-width:100%;overflow:hidden}
     .ad-slot.ad-start{margin:14px auto 4px}
     .ad-slot.ad-result{margin:16px auto 4px}
+    .ad-slot.ad-bottom{margin:16px auto 4px}
   </style>
 </head>
 <body>
@@ -90,6 +91,7 @@
         <li>撞上障碍会罚时，换道和刹车也会减速；遇到龟速车只会减速，不额外罚时。松开后自动提速，尽量追回打卡时间。</li>
       </ul>
     </footer>
+    <div class="ad-slot ad-bottom" id="ad-bottom"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2274290381465979" data-ad-slot="3595732597" data-ad-format="auto" data-full-width-responsive="true"></ins></div>
   </div>
   <script>
   (()=>{
@@ -129,7 +131,9 @@
     };
     const COURIER_MOPED_PARAMS={colorway:'sage-green',cargo:'food-box',boxShell:'#ffd359',wheelbase:1.2};
     const state={phase:'home',preparing:0,elapsed:0,lane:1,x:0,speed:BASE_SPEED,distanceKm:0,collisionMinutes:0,score:0,late:0,combo:0,comboAt:0,invincible:0,brake:false,obstacles:[],counts:{},first:[],dodgedCounts:{},dodgedFirst:[],spawned:new Set(),spawnBag:[],nextRandom:.8+Math.random()*.8,scroll:0,toastUntil:0,result:null};
-    let resultAdShown=false;
+    let resultAdShown=false,footerSeen=false,bottomAdShown=false;
+    function pushNextAd(){try{(window.adsbygoogle=window.adsbygoogle||[]).push({});}catch(e){}}
+    function maybePushBottomAd(){if(resultAdShown&&footerSeen&&!bottomAdShown){bottomAdShown=true;pushNextAd();}}
     let uid=0,lastFrame=performance.now(),three=null,renderer=null,scene=null,camera=null,player=null,roadMarks=[],roadside=[],models={},cloneAsset=null,animateClips=null,ambientLight=null,sunLight=null,pointerBrake=false,keyBrake=false,pause=false;
     const fallback=$('fallback'),ctx=fallback.getContext('2d');let width=0,height=0,dpr=1,mobileScene=false;
     let renderMode='2d',threeDisabled=false,assetStatus='',lastRenderCheck=null,nextRenderCheck=0,renderCheckTimer=0,simpleFallback=false;
@@ -325,7 +329,7 @@
       clearTimeout(shareResetTimer);$('share').textContent=shareButtonLabel(state.late);$('encounter-heading').textContent=onTime?'今日躲过':'今日遭遇';$('copy').textContent=onTime?'复制准时战绩':'复制迟到原因';$('card-date').textContent=state.result.date.replaceAll('-','.');
       const list=$('encounters');list.replaceChildren();if(!state.result.first.length){const li=document.createElement('li');li.textContent='一路礼让，一路绿灯。';list.append(li);}
       for(const kind of state.result.first){const li=document.createElement('li'),a=document.createElement('span'),b=document.createElement('b');a.textContent=TYPES[kind].name;b.textContent=`${state.result.counts[kind]} 次`;li.append(a,b);list.append(li);}
-      $('restart').classList.add('off');$('rewards').replaceChildren();$('result-screen').classList.remove('off');if(!resultAdShown){resultAdShown=true;try{(window.adsbygoogle=window.adsbygoogle||[]).push({});}catch(e){}}$('toast').classList.remove('show');$('arena').classList.remove('braking');updateHUD();
+      $('restart').classList.add('off');$('rewards').replaceChildren();$('result-screen').classList.remove('off');if(!resultAdShown){resultAdShown=true;pushNextAd();maybePushBottomAd();}$('toast').classList.remove('show');$('arena').classList.remove('braking');updateHUD();
     }
     function steer(dir){if(state.phase!=='playing'||state.preparing>0||pause)return;const lane=clamp(state.lane+dir,0,2);if(lane===state.lane)return;state.lane=lane;state.speed*=.95;updateHUD();}
     function updateHUD(){
@@ -770,7 +774,8 @@
     if(typeof ResizeObserver!=='undefined')new ResizeObserver(()=>{try{resize();}catch(error){useFallback(error.message);}}).observe($('scene'));
     window.addEventListener('resize',()=>{try{resize();}catch(error){useFallback(error.message);}});
     $('start').addEventListener('click',startGame);$('again').addEventListener('click',startGame);$('restart').addEventListener('click',()=>{if(state.phase==='playing')startGame();});$('left').addEventListener('click',()=>steer(-1));$('right').addEventListener('click',()=>steer(1));
-    try{(window.adsbygoogle=window.adsbygoogle||[]).push({});}catch(e){}
+    pushNextAd();
+    if('IntersectionObserver' in window){const bottomAdObserver=new IntersectionObserver(entries=>{if(entries.some(entry=>entry.isIntersecting)){footerSeen=true;maybePushBottomAd();bottomAdObserver.disconnect();}},{rootMargin:'200px'});const bottomAdEl=$('ad-bottom');if(bottomAdEl)bottomAdObserver.observe(bottomAdEl);}else{footerSeen=true;}
     document.addEventListener('keydown',e=>{if(state.phase!=='playing'||state.preparing>0)return;const key=e.key.toLowerCase();if(['arrowleft','arrowright','a','d','arrowdown',' '].includes(key))e.preventDefault();if(!e.repeat){if(key==='arrowleft'||key==='a')steer(-1);if(key==='arrowright'||key==='d')steer(1);}if(key==='arrowdown'||key===' ')keyBrake=true;});document.addEventListener('keyup',e=>{if(e.key==='ArrowDown'||e.key===' ')keyBrake=false;});
     $('brake').addEventListener('pointerdown',e=>{if(state.phase!=='playing'||state.preparing>0)return;e.preventDefault();pointerBrake=true;$('brake').setPointerCapture(e.pointerId);});for(const event of ['pointerup','pointercancel','lostpointercapture'])$('brake').addEventListener(event,()=>{pointerBrake=false;});
     let swipe=null;$('arena').addEventListener('pointerdown',e=>{if(state.phase==='playing'&&!state.preparing&&!e.target.closest('button')&&e.isPrimary)swipe={x:e.clientX,y:e.clientY,id:e.pointerId};});$('arena').addEventListener('pointerup',e=>{if(!swipe||swipe.id!==e.pointerId)return;const dx=e.clientX-swipe.x,dy=e.clientY-swipe.y;if(Math.abs(dx)>35&&Math.abs(dx)>Math.abs(dy)*1.2)steer(Math.sign(dx));swipe=null;});$('arena').addEventListener('pointercancel',()=>{swipe=null;});$('scene').style.touchAction='none';
