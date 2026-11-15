@@ -10,7 +10,7 @@
 const ALLOWED_ORIGINS = new Set([
   'https://malu.aiarts.cc',
   'https://malu-burangwo.pages.dev',
-  'https://malu.travelchinaguide.dpdns.org',
+  'https://road.travelchinaguide.dpdns.org',
   'https://malu-burangwo-cf1.pages.dev',
 ]);
 const TABS = ['streak', 'late', 'arrival', 'lateTime'];
