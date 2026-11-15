@@ -209,8 +209,8 @@
     $('streak-home').textContent=countStreak(readStreak());$('late-days-home').textContent=readLateDays();
     // ---- 共享排行榜（Cloudflare Worker + D1，全网榜）----
     // BOARD_API 为空 = 后端尚未部署：排行榜只显示“即将上线”，不发任何请求。
-    // 部署后填 Worker 地址，例如 https://malu-board.<子域>.workers.dev（见 worker/README.md）。
-    const BOARD_API='https://malu-board.wangzheguilai2005.workers.dev';
+    // 部署后填 Worker 地址：cf1 自定义域名路由 https://board.travelchinaguide.dpdns.org（见 worker/README.md）。
+    const BOARD_API='https://board.travelchinaguide.dpdns.org';
     const PLAYER_KEY='malu-player-id',NICK_KEY='malu-nickname';
     const BOARD_TAB_LABEL={streak:'连续准时榜',late:'迟到榜',arrival:'到达时间榜',lateTime:'迟到时间榜'};
     function playerId(){try{let id=localStorage.getItem(PLAYER_KEY);if(!id){id=crypto.randomUUID?crypto.randomUUID():`p-${Date.now().toString(36)}-${Math.random().toString(36).slice(2,10)}`;localStorage.setItem(PLAYER_KEY,id);}return id;}catch{return 'p-anon';}}

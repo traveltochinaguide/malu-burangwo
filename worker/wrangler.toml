@@ -7,4 +7,4 @@ workers_dev = true
 binding = "DB"
 database_name = "malu-board-db"
 # 部署前先跑：wrangler d1 create malu-board-db ，把返回的 id 填到下面
-database_id = "968af473-5931-4104-8491-c226b983ba3b"
+database_id = "292e5f49-90d5-4309-9a43-ef012d96fa59"
